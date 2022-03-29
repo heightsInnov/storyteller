@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Auth;
 
 class StoryTellerController extends Controller
 {
+    public $storyModel;
+
+    public function _constructor(){
+        $this->storyModel = new StoryTeller;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -165,8 +170,15 @@ class StoryTellerController extends Controller
      * @param  \App\Models\StoryTeller  $storyTeller
      * @return \Illuminate\Http\Response
      */
-    public function destroy(StoryTeller $storyTeller)
+    public function destroy($id)
     {
-        //
+        if($id < 1){
+            return response()->json(['message' => "Invalid id supply", 'success' => false]);
+        }
+
+        DB::table('story_tellers')
+        ->where('id', $id)
+        ->delete();
+        return response()->json(['message' => "Story deleted successfully", 'success' => true]);
     }
 }

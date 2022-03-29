@@ -29,10 +29,10 @@ class CreateUsersTable extends Migration
             $table->string('writing_preference')->nullable();
             $table->string('code');
             $table->boolean('changed_password')->default(false);
-            $table->boolean('is_approved')->default(false);
+            $table->boolean('is_approved')->default('1');
             $table->boolean('disabled')->default(false);
-            $table->boolean('is_activated')->default(false);
-            $table->boolean('is_verified')->default(false);
+            $table->boolean('is_activated')->default('1');
+            $table->boolean('is_verified')->default('1');
             $table->boolean('is_admin')->default(false);
             $table->boolean('is_story_seeker')->default(false);
             $table->boolean('is_story_teller')->default(false);
